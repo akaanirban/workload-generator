@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34e50f19-9e54-46e8-adbd-ae55997ad595" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Examples/get_docker_stats.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Monitors/DockerMonitor/DockerMonitorUtils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Monitors/DockerMonitor/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Monitors/LambdaMonitor/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utilities/SqliteLogger.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Utilities/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generators/ImageDataGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generators/ImageDataGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="34e50f19-9e54-46e8-adbd-ae55997ad595" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -262,7 +251,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-4" width="1920" height="1043" extended-state="7" />
+    <frame x="1920" y="-4" width="1920" height="1043" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
