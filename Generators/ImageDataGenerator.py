@@ -48,6 +48,7 @@ class ImageDataGenerator:
         logger.info(msg="Source Set at : {}".format(self.source_path))
         logger.info(msg="Destination Set at : {}".format(self.destination_path))
         logger.info(msg="{} images will be emitted per {} seconds".format(self.chunk_size, self.time_interval))
+        self.totalcounter = 0
 
     def get_all_files(self):
         try:
@@ -93,6 +94,7 @@ class ImageDataGenerator:
         self.counter = self.counter + self.chunk_size
         if self.repeat_images_flag is True and self.counter >= len(self.all_files):
             self.counter = 0
+        self.totalcounter = self.totalcounter+ self.chunk_size
 
     def generate(self):
         """
@@ -107,7 +109,7 @@ class ImageDataGenerator:
         self.create_symlink()
         if not self.stop_generate_flag.set():
             threading.Timer(self.time_interval, self.generate, []).start()
-        logger.info(msg="Created {} symlinks in {} seconds".format(self.chunk_size, timeit.default_timer() - start_time))
+        logger.info(msg="Created {} symlinks in {} seconds, total images processed {}".format(self.chunk_size, timeit.default_timer() - start_time, self.totalcounter))
 
     def stop(self):
         self.stop_generate_flag.set()

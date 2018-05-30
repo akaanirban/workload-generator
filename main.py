@@ -7,5 +7,5 @@ logging.getLogger(__name__)
 
 if __name__ == "__main__":
     new_workload = ImageDataGenerator(src="/home/anirban/Pictures/First200", dest="/home/anirban/Pictures/test",
-                                      chunk_size=4, repeat_images=True)
+                                      time_interval =.01, chunk_size=4, repeat_images=True)
     new_workload.generate()
