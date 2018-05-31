@@ -3,6 +3,7 @@ import random
 import threading
 import logging
 import timeit
+from shutil import copyfile
 
 
 logging.basicConfig(format='%(asctime)s Content: %(message)s',level=os.environ.get("LOGLEVEL", "INFO"))
@@ -82,6 +83,30 @@ class ImageDataGenerator:
             logger.info(msg="Symlink created for {}".format(filename))
         self.increment_counter()
 
+    def create_copy(self):
+        """
+            Copy Image creator function.
+
+            If repeat images is set of False, then after all images in the folder are exhausted
+            , the program will Exit
+
+            Else, creates the image copies sequentially, increments the counter.
+
+        """
+        #
+        if self.counter+1 >= len(self.all_files) and self.repeat_images_flag is not True:
+            self.stop()
+            exit(0)
+
+        for i in range(self.chunk_size):
+            file_path = self.all_files[self.counter + i]
+            filename = file_path.strip().split(os.sep)[-1]
+            destination_path = self.destination_path + os.sep + filename
+            if not os.path.exists(destination_path):
+                copyfile(file_path, destination_path)
+            logger.info(msg="Copy created for {}".format(filename))
+        self.increment_counter()
+
     def unlink_previous(self):
         try:
             if os.path.exists(self.source_path):
@@ -96,7 +121,7 @@ class ImageDataGenerator:
             self.counter = 0
         self.totalcounter = self.totalcounter+ self.chunk_size
 
-    def generate(self):
+    def generate(self, instruction_type="symlink"):
         """
             Image symlink generator.
 
@@ -106,9 +131,12 @@ class ImageDataGenerator:
         """
         start_time = timeit.default_timer()
         self.unlink_previous()
-        self.create_symlink()
+        if instruction_type == "symlink":
+            self.create_symlink()
+        elif instruction_type == "copy":
+            self.create_copy()
         if not self.stop_generate_flag.set():
-            threading.Timer(self.time_interval, self.generate, []).start()
+            threading.Timer(self.time_interval, self.generate, [instruction_type]).start()
         logger.info(msg="Created {} symlinks in {} seconds, total images processed {}".format(self.chunk_size, timeit.default_timer() - start_time, self.totalcounter))
 
     def stop(self):
