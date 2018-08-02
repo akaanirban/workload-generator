@@ -4,6 +4,7 @@ from os import path, environ
 import timeit, logging
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 from Monitors.DockerMonitor import DockerMonitorUtils
+import time
 
 DB_FILE_NAME = "anirban.db"
 conn = sqlite3.connect(DB_FILE_NAME)
@@ -43,6 +44,8 @@ if __name__ == "__main__":
             logger.info(
                 msg="Round {} done in symlinks in {} seconds".format(count, timeit.default_timer() - start_time))
             count += 1
+            if not docker_stats:
+                time.sleep(1)
     except KeyboardInterrupt:
         conn.commit()
         conn.close()
